@@ -1,0 +1,43 @@
+//this component reads data from "https://restcountries.com/v3.1/all"
+
+import { useEffect,useState } from "react";
+import axios from "axios";
+
+//creating the main component function
+const Second = ()=>{
+
+    //creating an empty array to store array of objects
+    const [arr,setArr] = useState([]);
+
+    //using the useEffect hook to fetch data from server
+    useEffect(()=>{
+        const getCountries = async ()=>{
+
+            let res = await axios.get(`https://restcountries.com/v3.1/all`);
+            const {data} = res;
+            setArr(data);
+        }
+        //calling the method 
+        getCountries();
+
+
+    },[])
+
+
+
+    return(
+        <>
+        <table border={1} cellPadding={10} cellSpacing={10} align="center">
+            <thead>
+                <tr>
+                    <th>name</th>
+                </tr>
+            </thead>
+
+
+
+        </table>
+        </>
+    )
+}
+export default Second;
